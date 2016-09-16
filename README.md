@@ -45,9 +45,9 @@ And, an easy way to see/understand the chain of functions is that, in the end, w
 <br />
 
 ### Steps to remember:
-1. Pass your middleware to the ```applyMiddleware``` []() at your top level file
+1. Pass your middleware to the ```applyMiddleware``` [L11](https://github.com/heron2014/middleware-react-redux/blob/master/src/index.js#L11) at your top level file
 2. If we have more than one middleware just pass them like this: ```applyMiddleware(Middleware1,Middleware2, Middleware3)(createStore)```
-3. Depending on the action which flows to middleware either send to to next middleware or dispatch an action with the resolved promise (data) (DIAGRAM ABOVE)
+3. Depending on the action which flows to middleware either send to to next middleware or dispatch an action with the resolved promise (data) (DIAGRAM ABOVE) [async](https://github.com/heron2014/middleware-react-redux/blob/master/src/middlewares/async.js)
 
 ### Run the example
 
