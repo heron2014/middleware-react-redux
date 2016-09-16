@@ -6,19 +6,24 @@
 
 ### What is Middleware
 
-**Middleware** sits between actions creators and reducers! Anything you want to do, you can do it in middleware.
+**Middleware** sits between actions creators and reducers! Anything you want to do (any modifications), you can do it in middleware.
 
 Middleware will help resolve any action before it hits to reducers.
 
 ```js
+// pseudo code
 //middleware pattern
 export default function({ dispatch }) {
   return next => action => {
     // here we have all the actions which flows to our app
-    console.log(action);
-
-    //send it to another middleware if exist otherwise send it to reducers
-    next(action);
+    // if action does not have a payload or not a promise
+    if (!action.payload  .....) { // some other condition
+      //send it to next middleware
+      next(action);
+    }
+    //if it is a promise , resolve it , do some logic etc and dispatch new action with data
+    action.payload.then ....
+      dispatch(newAction)
   }
 }
 
@@ -40,6 +45,14 @@ And, an easy way to see/understand the chain of functions is that, in the end, w
 1. Pass your middleware to the ```applyMiddleware``` []() at your top level file
 2. If we have more than one middleware just pass them like this: ```applyMiddleware(Middleware1,Middleware2, Middleware3)(createStore)```
 3. Depending on the action which flows to middleware either send to to next middleware or dispatch an action with the resolved promise (data) (DIAGRAM ABOVE)
+
+### Run the example
+
+- ```clone the repo```
+- ```npm install```
+- ```npm run start```
+- navigate to ```localhost:8080```
+
 
 ### Reference
 - ReduxReactSimpleStarter https://github.com/StephenGrider/ReduxSimpleStarter
