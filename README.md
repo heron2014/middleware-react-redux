@@ -1,4 +1,4 @@
-### middleware
+## Middleware
 
 ### Cycle in react-redux apps
 
@@ -21,25 +21,28 @@ export default function({ dispatch }) {
       //send it to next middleware
       next(action);
     }
-    //if it is a promise , resolve it , do some logic etc and dispatch new action with data
-    action.payload.then ....
+    //if it is a promise , resolve it , do some logic etc and dispatch new action with current data plus new data from response
+     action.payload.then ....
       dispatch(newAction)
   }
 }
 
 ```
-The object being 'destructured' ```({ dispatch })``` is actually the redux store object which also has the ```getState``` method on it. This is what makes middlewares so useful / powerful.
+The object being destructured ```({ dispatch })``` is actually the redux store object which also has the ```getState``` method on it. This is what makes middlewares so useful / powerful.
 
 And, an easy way to see/understand the chain of functions is that, in the end, we just have a function with access to store (or dispatch on this case), the next middleware and the current action on its scope.
 
-
-##### Middleware stack (example with some 3 middlewares)
+<br />
+### Middleware stack (example with some 3 middlewares)
 
 ![middleware](img-readme/middleware-stack.png)
 
+<br />
 ### Handling actions via middleware
 
 ![middleware](img-readme/middleware-flow.png)
+
+<br />
 
 ### Steps to remember:
 1. Pass your middleware to the ```applyMiddleware``` []() at your top level file
